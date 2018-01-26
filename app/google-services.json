@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1034981070859",
+    "firebase_url": "https://myfirebasedemoapp-9dd54.firebaseio.com",
+    "project_id": "myfirebasedemoapp-9dd54",
+    "storage_bucket": "myfirebasedemoapp-9dd54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034981070859:android:a9b030178d39c0ac",
+        "android_client_info": {
+          "package_name": "com.application.pradyotprakash.attendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034981070859-l1l71uddi2o9d4ee929sr4e68hnih6ie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application.pradyotprakash.attendance",
+            "certificate_hash": "099ce875e5ef48694c8c33872a25c8c4ebf8641d"
+          }
+        },
+        {
+          "client_id": "1034981070859-144thb5i13s5t70fvg252aicugh9cjlr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1Qrfy75mlq3C-ryhHzCCJkOdGuqv3ZPM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034981070859-144thb5i13s5t70fvg252aicugh9cjlr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

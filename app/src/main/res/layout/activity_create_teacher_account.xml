@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6ffff"
+    tools:context="com.application.pradyotprakash.attendance.CreateTeacherAccount">
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="85dp"
+        android:ems="10"
+        android:hint="@string/enter_username"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="64dp" />
+
+    <EditText
+        android:id="@+id/teacherEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/userName"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:hint="@string/enter_email_id"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/teacherPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/teacherEmail"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="@string/enter_password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/createTeacherAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="84dp"
+        android:background="@android:color/transparent"
+        android:text="@string/create_teacher_account"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</RelativeLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:id="@+id/classTeacherInforamtion"
+    android:background="#e3e5e8"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="13dp"
+        android:text="@string/branch" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView9"
+        android:layout_below="@+id/textView9"
+        android:layout_marginTop="21dp"
+        android:text="@string/semester2" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_below="@+id/textView10"
+        android:layout_marginTop="23dp"
+        android:text="@string/class3" />
+
+    <TextView
+        android:id="@+id/branchData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_marginStart="60dp"
+        android:layout_toEndOf="@+id/textView10"
+        android:text="@string/no_data_entered5" />
+
+    <TextView
+        android:id="@+id/semesterData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/branchData"
+        android:layout_alignTop="@+id/textView10"
+        android:text="@string/no_data_entered5" />
+
+    <TextView
+        android:id="@+id/classData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView11"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_alignStart="@+id/semesterData"
+        android:text="@string/no_data_entered5" />
+</RelativeLayout>

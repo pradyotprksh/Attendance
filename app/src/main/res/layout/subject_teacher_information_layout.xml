@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/subjectTeacherInformation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e3e5e8">
+
+
+    <TextView
+        android:id="@+id/branchSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/semesterSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/branchSubject"
+        android:layout_marginTop="18dp"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/classSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/semesterSubject"
+        android:layout_marginStart="46dp"
+        android:layout_toEndOf="@+id/semesterSubject"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/subjectSubject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/classSubject"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@+id/classSubject"
+        android:text="@string/textview" />
+</RelativeLayout>
