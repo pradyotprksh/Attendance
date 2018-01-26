@@ -32,6 +32,7 @@ public class TeacherControl extends AppCompatActivity {
     private ListView subjectList;
     private SubjectTeacherListAdapter subjectListAdapter;
     private List<SubjectTeacher> mSubjectList;
+    String className, branchName, semesterName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +69,14 @@ public class TeacherControl extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot == null) {
-                    String className = "No Data Available";
-                    String branchName = "No Data Available";
-                    String semesterName = "No Data Available";
+                    className = "No Data Available";
+                    branchName = "No Data Available";
+                    semesterName = "No Data Available";
                     mClassList.add(new ClassTeacher(branchName, className, semesterName));
                 } else {
-                    String className = (String) dataSnapshot.child("ClassName").getValue();
-                    String branchName = (String) dataSnapshot.child("Branch").getValue();
-                    String semesterName = (String) dataSnapshot.child("Semester").getValue();
+                    className = (String) dataSnapshot.child("ClassName").getValue();
+                    branchName = (String) dataSnapshot.child("Branch").getValue();
+                    semesterName = (String) dataSnapshot.child("Semester").getValue();
                     mClassList.add(new ClassTeacher(branchName, className, semesterName));
                 }
             }
@@ -87,6 +88,17 @@ public class TeacherControl extends AppCompatActivity {
         });
         classListAdapter = new ClassTeacherListAdapter(getApplicationContext(), mClassList);
         classList.setAdapter(classListAdapter);
+        classList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TeacherControl.this,StudentSMSInformation.class);
+                intent.putExtra("className",className);
+                intent.putExtra("branchName", branchName);
+                intent.putExtra("semesterName", semesterName);
+                startActivity(intent);
+                finish();
+            }
+        });
         // subject list
         subjectList = findViewById(R.id.subjectTeacherInforamtion);
         mSubjectList = new ArrayList<>();

@@ -74,6 +74,7 @@
     <string name="add_days">Add Days</string>
     <string name="confirm_changes">Confirm Change</string>
     <string name="change_value3">Change Value</string>
+    <string name="send_sms2">Send SMS</string>
     <string-array name="spinner_branches">
         <item>
             Civil Engineering
