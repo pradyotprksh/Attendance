@@ -1,9 +1,8 @@
 package com.application.pradyotprakash.attendance;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -47,7 +46,6 @@ public class TeacherControl extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String tUserName = dataSnapshot.child("Name").getValue().toString();
-                Toast.makeText(getApplicationContext(), "Welcome, " + tUserName, Toast.LENGTH_SHORT).show();
                 userName.setText(tUserName);
             }
 

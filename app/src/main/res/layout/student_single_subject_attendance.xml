@@ -7,7 +7,7 @@
     android:background="#e3e5e8">
 
     <TextView
-        android:id="@+id/subject"
+        android:id="@+id/subjectValueClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -15,11 +15,11 @@
         tools:layout_editor_absoluteY="16dp" />
 
     <TextView
-        android:id="@+id/percentage"
+        android:id="@+id/percentageValueClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/subject"
+        android:layout_below="@+id/subjectValueClick"
         android:text="TextView"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="52dp" />

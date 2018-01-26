@@ -125,9 +125,21 @@ public class AttendenceCalculation extends AppCompatActivity {
         mFirebaseDatabase2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                percentageString = (dataSnapshot.child("Percentage").getValue().toString());
-                daysString = (dataSnapshot.child("Days").getValue().toString());
-                totalDaysString = (dataSnapshot.child("TotalDays").getValue().toString());
+                try {
+                    percentageString = (dataSnapshot.child("Percentage").getValue().toString());
+                } catch (Exception e) {
+                    percentageString = "";
+                }
+                try {
+                    daysString = (dataSnapshot.child("Days").getValue().toString());
+                } catch (Exception e) {
+                    daysString = "";
+                }
+                try {
+                    totalDaysString = (dataSnapshot.child("TotalDays").getValue().toString());
+                } catch (Exception e) {
+                    totalDaysString = "";
+                }
             }
 
             @Override

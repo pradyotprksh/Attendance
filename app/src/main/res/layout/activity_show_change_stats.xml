@@ -26,7 +26,7 @@
         android:text="@string/textview" />
 
     <TextView
-        android:id="@+id/subject"
+        android:id="@+id/subjectValueClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/className"
@@ -46,7 +46,7 @@
         android:id="@+id/totalClassDays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/subject"
+        android:layout_alignStart="@+id/subjectValueClick"
         android:layout_alignTop="@+id/totalDays"
         android:text="@string/textview" />
 
@@ -68,7 +68,7 @@
         android:text="@string/textview" />
 
     <TextView
-        android:id="@+id/percentage"
+        android:id="@+id/percentageValueClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/presentDays"
@@ -80,7 +80,7 @@
         android:id="@+id/percentageCurrent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/percentage"
+        android:layout_alignBottom="@+id/percentageValueClick"
         android:layout_alignStart="@+id/presentClassDays"
         android:text="@string/textview" />
 
@@ -88,8 +88,8 @@
         android:id="@+id/absentOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/percentage"
-        android:layout_below="@+id/percentage"
+        android:layout_alignStart="@+id/percentageValueClick"
+        android:layout_below="@+id/percentageValueClick"
         android:layout_marginTop="27dp"
         android:text="@string/absent_on4" />
 

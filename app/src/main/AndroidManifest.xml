@@ -59,6 +59,9 @@
         <activity
             android:name=".ShowChangeStats"
             android:theme="@style/AppTheme.LoginTheme" />
+        <activity
+            android:name=".ChangeAbsentToPresent"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>

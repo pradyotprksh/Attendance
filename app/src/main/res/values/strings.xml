@@ -73,6 +73,7 @@
     <string name="absent_on4">Absent On:</string>
     <string name="add_days">Add Days</string>
     <string name="confirm_changes">Confirm Change</string>
+    <string name="change_value3">Change Value</string>
     <string-array name="spinner_branches">
         <item>
             Civil Engineering

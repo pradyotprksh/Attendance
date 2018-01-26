@@ -40,8 +40,8 @@ public class StudentAttendanceListAdapter extends BaseAdapter{
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = View.inflate(mContext, R.layout.student_single_subject_attendance,null);
-        TextView subjectName = v.findViewById(R.id.subject);
-        TextView percentage = v.findViewById(R.id.percentage);
+        TextView subjectName = v.findViewById(R.id.subjectValueClick);
+        TextView percentage = v.findViewById(R.id.percentageValueClick);
         subjectName.setText(mAttendanceList.get(position).getSubjectName());
         percentage.setText(mAttendanceList.get(position).getPercentage());
         return v;
