@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.application.pradyotprakash.attendance.ShowChangeStats">
+
+    <TextView
+        android:id="@+id/usn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/className"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/usn"
+        android:layout_below="@+id/usn"
+        android:layout_marginTop="30dp"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/subject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/className"
+        android:layout_centerHorizontal="true"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/totalDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/className"
+        android:layout_below="@+id/className"
+        android:layout_marginTop="37dp"
+        android:text="@string/total_days1" />
+
+    <TextView
+        android:id="@+id/totalClassDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/subject"
+        android:layout_alignTop="@+id/totalDays"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/presentDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/totalDays"
+        android:layout_below="@+id/totalDays"
+        android:layout_marginTop="35dp"
+        android:text="@string/days_present2" />
+
+    <TextView
+        android:id="@+id/presentClassDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/presentDays"
+        android:layout_alignStart="@+id/totalClassDays"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/presentDays"
+        android:layout_below="@+id/presentDays"
+        android:layout_marginTop="33dp"
+        android:text="@string/percentage43" />
+
+    <TextView
+        android:id="@+id/percentageCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/percentage"
+        android:layout_alignStart="@+id/presentClassDays"
+        android:text="@string/textview" />
+
+    <TextView
+        android:id="@+id/absentOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/percentage"
+        android:layout_below="@+id/percentage"
+        android:layout_marginTop="27dp"
+        android:text="@string/absent_on4" />
+
+    <EditText
+        android:id="@+id/addDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/presentClassDays"
+        android:layout_marginStart="28dp"
+        android:layout_toEndOf="@+id/presentClassDays"
+        android:ems="10"
+        android:hint="@string/add_days"
+        android:inputType="textPersonName"/>
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/confirm_changes" />
+
+    <ListView
+        android:id="@+id/absentDetails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@+id/absentOn"
+        android:layout_below="@+id/absentOn"
+        android:layout_marginTop="12dp"
+        android:layout_above="@+id/confirm"/>
+</RelativeLayout>

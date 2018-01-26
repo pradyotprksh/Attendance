@@ -66,6 +66,13 @@
     <string name="no_data_entered5">No Data Entered</string>
     <string name="absent">Absent</string>
     <string name="present">Present</string>
+    <string name="stats">Stats</string>
+    <string name="total_days1">Total Days:</string>
+    <string name="days_present2">Days Present:</string>
+    <string name="percentage43">Percentage:</string>
+    <string name="absent_on4">Absent On:</string>
+    <string name="add_days">Add Days</string>
+    <string name="confirm_changes">Confirm Change</string>
     <string-array name="spinner_branches">
         <item>
             Civil Engineering

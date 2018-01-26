@@ -53,8 +53,12 @@
         <activity
             android:name=".AttendenceCalculation"
             android:theme="@style/AppTheme.CustomTheme" />
-        <activity android:name=".StudentInformation"
-            android:theme="@style/AppTheme.CustomTheme"/>
+        <activity
+            android:name=".StudentInformation"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".ShowChangeStats"
+            android:theme="@style/AppTheme.LoginTheme" />
     </application>
 
 </manifest>

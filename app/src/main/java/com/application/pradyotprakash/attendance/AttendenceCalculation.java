@@ -3,12 +3,11 @@ package com.application.pradyotprakash.attendance;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,11 +15,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AttendenceCalculation extends AppCompatActivity {
 
-    Button present, absent;
-    String branch, semester, className, subject, usn, percentageString;
-    private DatabaseReference mFirebaseDatabase, mFirebaseDatabase1;
+    Button present, absent, stats;
+    String branch, semester, className, subject, usn, percentageString, daysString, totalDaysString;
+    private DatabaseReference mFirebaseDatabase, mFirebaseDatabase1, mFirebaseDatabase2;
     double days, total, currentDays, currentTotal;
     double percentage;
 
@@ -37,6 +40,7 @@ public class AttendenceCalculation extends AppCompatActivity {
         getWindow().setLayout((int) (width * .8), (int) (height * .3));
         present = findViewById(R.id.presentStudent);
         absent = findViewById(R.id.absentStudent);
+        stats = findViewById(R.id.statsButton);
         Intent intent = getIntent();
         branch = intent.getStringExtra("branch");
         semester = intent.getStringExtra("semester");
@@ -94,6 +98,10 @@ public class AttendenceCalculation extends AppCompatActivity {
                 total = currentTotal + 1;
                 percentage = (days / total) * 100;
                 percentageString = String.valueOf(percentage);
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+                String currentDateTimeString = sdf.format(d);
                 mFirebaseDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child("Attendance");
                 mFirebaseDatabase1
                         .child(branch).child(semester)
@@ -105,6 +113,42 @@ public class AttendenceCalculation extends AppCompatActivity {
                 mFirebaseDatabase1.child(branch).child(semester)
                         .child(className).child(usn)
                         .child(subject).child("Percentage").setValue(percentageString);
+                mFirebaseDatabase1.child(branch).child(semester)
+                        .child(className).child(usn)
+                        .child(subject).child(date).child(currentDateTimeString).setValue("Absent");
+            }
+        });
+        mFirebaseDatabase2 = FirebaseDatabase.getInstance()
+                .getReference().child("Users").child("Attendance").child(branch).child(semester)
+                .child(className).child(usn)
+                .child(subject);
+        mFirebaseDatabase2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                percentageString = (dataSnapshot.child("Percentage").getValue().toString());
+                daysString = (dataSnapshot.child("Days").getValue().toString());
+                totalDaysString = (dataSnapshot.child("TotalDays").getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        stats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AttendenceCalculation.this, ShowChangeStats.class);
+                intent.putExtra("branch", branch);
+                intent.putExtra("semester", semester);
+                intent.putExtra("className", className);
+                intent.putExtra("usn", usn);
+                intent.putExtra("subject", subject);
+                intent.putExtra("percentage", percentageString);
+                intent.putExtra("days", daysString);
+                intent.putExtra("totalDays", totalDaysString);
+                startActivity(intent);
+                finish();
             }
         });
     }
