@@ -1,11 +1,11 @@
 package com.application.pradyotprakash.attendance;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,6 +25,7 @@ public class StudentInformation extends AppCompatActivity {
     private StudentAttendanceListAdapter attendanceListAdapter;
     private List<StudentAttendance> mAttendanceList;
     String subject;
+    Button refresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class StudentInformation extends AppCompatActivity {
         usn = intent.getStringExtra("usn");
         semesterSelected = intent.getStringExtra("semester");
         classSelected = intent.getStringExtra("className");
+        refresh = findViewById(R.id.refreshBtn);
         attendanceList = findViewById(R.id.attendanceList);
         mAttendanceList = new ArrayList<>();
         mFirebaseDatabase1 = FirebaseDatabase.getInstance()
@@ -48,7 +50,7 @@ public class StudentInformation extends AppCompatActivity {
                     currentDaysString = (dataSnapshot1.child("Days").getValue().toString());
                     currentTotalString = (dataSnapshot1.child("TotalDays").getValue().toString());
                     percentageString = (dataSnapshot1.child("Percentage").getValue().toString());
-                    Toast.makeText(getApplicationContext(), percentageString, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), percentageString, Toast.LENGTH_SHORT).show();
                     mAttendanceList.add(new StudentAttendance(subject, percentageString));
                 }
             }
@@ -60,6 +62,18 @@ public class StudentInformation extends AppCompatActivity {
         });
         attendanceListAdapter = new StudentAttendanceListAdapter(getApplicationContext(), mAttendanceList);
         attendanceList.setAdapter(attendanceListAdapter);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getIntent();
+                finish();
+                intent.putExtra("usn", usn);
+                intent.putExtra("branch", branchSelected);
+                intent.putExtra("semester", semesterSelected);
+                intent.putExtra("className", classSelected);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onBackPressed() {

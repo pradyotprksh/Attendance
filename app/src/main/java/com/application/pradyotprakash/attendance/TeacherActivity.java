@@ -1,14 +1,13 @@
 package com.application.pradyotprakash.attendance;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -70,9 +69,7 @@ public class TeacherActivity extends AppCompatActivity {
         noAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TeacherActivity.this, "Create your account.", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(TeacherActivity.this, CreateTeacherAccount.class);
-                startActivity(intent);
+                Toast.makeText(TeacherActivity.this, "Ask Admin to create your account!", Toast.LENGTH_LONG).show();
             }
         });
     }

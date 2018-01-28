@@ -1,8 +1,8 @@
 package com.application.pradyotprakash.attendance;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -58,14 +58,14 @@ public class StudentActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String usn = usnText.getText().toString();//.toUpperCase();
                 classSelected = className.getText().toString();
-//                boolean b = Pattern.matches("[0-9]SG[0-9][0-9][A-Z][A-Z][0-9][0-9][0-9]",usn);
-//                if (TextUtils.isEmpty(usn)) {
-//                    Toast.makeText(getApplicationContext(), "Enter your USN.", Toast.LENGTH_SHORT).show();
-//                }
-//                else if (usn.length() < 10 || usn.length() > 10) {
-//                    Toast.makeText(getApplicationContext(), "Enter your correct USN.", Toast.LENGTH_SHORT).show();
-//                }
-                //if (b){
+                boolean b = Pattern.matches("[0-9]SG[0-9][0-9][A-Z][A-Z][0-9][0-9][0-9]",usn);
+                if (TextUtils.isEmpty(usn)) {
+                    Toast.makeText(getApplicationContext(), "Enter your USN.", Toast.LENGTH_SHORT).show();
+                }
+                else if (usn.length() < 10 || usn.length() > 10) {
+                    Toast.makeText(getApplicationContext(), "Enter your correct USN.", Toast.LENGTH_SHORT).show();
+                }
+                if (b){
                 Intent intent = new Intent(StudentActivity.this, StudentInformation.class);
                 intent.putExtra("usn", usn);
                 intent.putExtra("branch", branchSelected);
@@ -73,10 +73,10 @@ public class StudentActivity extends AppCompatActivity {
                 intent.putExtra("className", classSelected);
                 startActivity(intent);
                 finish();
-                //}
-                //else {
-                //Toast.makeText(getApplicationContext(), "Invalid USN.", Toast.LENGTH_SHORT).show();
-                //}
+                }
+                else {
+                Toast.makeText(getApplicationContext(), "Invalid USN.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

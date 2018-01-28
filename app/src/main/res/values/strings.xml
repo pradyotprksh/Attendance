@@ -75,6 +75,7 @@
     <string name="confirm_changes">Confirm Change</string>
     <string name="change_value3">Change Value</string>
     <string name="send_sms2">Send SMS</string>
+    <string name="refresh3">Refresh</string>
     <string-array name="spinner_branches">
         <item>
             Civil Engineering

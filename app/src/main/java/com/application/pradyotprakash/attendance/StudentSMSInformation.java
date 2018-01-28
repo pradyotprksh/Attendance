@@ -116,33 +116,6 @@ public class StudentSMSInformation extends AppCompatActivity {
                                                 + "\nAbsent/Present: " + value
                                                 + "\n----------------------");
                                     }
-                                    if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.READ_PHONE_STATE)
-                                            != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(StudentSMSInformation.this,
-                                                new String[]{android.Manifest.permission.READ_PHONE_STATE},
-                                                MY_PERMISSIONS_REQUEST_SEND_SMS);
-                                    }
-                                    if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.SEND_SMS)
-                                            != PackageManager.PERMISSION_GRANTED) {
-                                        ActivityCompat.requestPermissions(StudentSMSInformation.this,
-                                                new String[]{android.Manifest.permission.SEND_SMS},
-                                                MY_PERMISSIONS_REQUEST_SEND_SMS);
-                                    } else {
-                                        SmsManager sms = SmsManager.getDefault();
-                                        if (android.os.Build.VERSION.SDK_INT >= 22) {
-                                            Log.e("Alert", "Checking SubscriptionId");
-                                            try {
-                                                Log.e("Alert", "SubscriptionId is " + sms.getSubscriptionId());
-                                            } catch (Exception e) {
-                                                Log.e("Alert", e.getMessage());
-                                                Log.e("Alert", "Fixed SubscriptionId to 1");
-                                                sms = SmsManager.getSmsManagerForSubscriptionId(1);
-                                            }
-                                        }
-                                        sms.sendTextMessage(parentNumber, null, finalMessage, null, null);
-                                        Toast.makeText(getApplicationContext(), finalMessage, Toast.LENGTH_SHORT).show();
-                                        Toast.makeText(getApplicationContext(), appendMessage, Toast.LENGTH_SHORT).show();
-                                    }
                                 }
 
                                 @Override
@@ -150,6 +123,38 @@ public class StudentSMSInformation extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Unable to fetch the data right now!", Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.READ_PHONE_STATE)
+                                    != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(StudentSMSInformation.this,
+                                        new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+                            }
+                            if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.SEND_SMS)
+                                    != PackageManager.PERMISSION_GRANTED) {
+                                ActivityCompat.requestPermissions(StudentSMSInformation.this,
+                                        new String[]{android.Manifest.permission.SEND_SMS},
+                                        MY_PERMISSIONS_REQUEST_SEND_SMS);
+                            } else {
+                                finalMessage = "Hello,\nYour Son/Daughter " + name
+                                        + "\nUSN: " + usn
+                                        + "\nEmail-Id: " + email
+                                        + "\nPhone Number: " + phone
+                                        + "\n========================";
+                                SmsManager sms = SmsManager.getDefault();
+                                if (android.os.Build.VERSION.SDK_INT >= 22) {
+                                    Log.e("Alert", "Checking SubscriptionId");
+                                    try {
+                                        Log.e("Alert", "SubscriptionId is " + sms.getSubscriptionId());
+                                    } catch (Exception e) {
+                                        Log.e("Alert", e.getMessage());
+                                        Log.e("Alert", "Fixed SubscriptionId to 1");
+                                        sms = SmsManager.getSmsManagerForSubscriptionId(1);
+                                    }
+                                }
+                                sms.sendTextMessage(parentNumber, null, finalMessage, null, null);
+                                Toast.makeText(getApplicationContext(), finalMessage, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getApplicationContext(), appendMessage, Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
 
