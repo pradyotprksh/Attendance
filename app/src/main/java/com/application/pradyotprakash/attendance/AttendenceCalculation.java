@@ -78,6 +78,10 @@ public class AttendenceCalculation extends AppCompatActivity {
                 total = currentTotal + 1;
                 percentage = (days / total) * 100;
                 percentageString = String.valueOf(percentage);
+                String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
+                String currentDateTimeString = sdf.format(d);
                 mFirebaseDatabase1 = FirebaseDatabase.getInstance().getReference().child("Users").child("Attendance");
                 mFirebaseDatabase1
                         .child(branch).child(semester)
@@ -89,6 +93,9 @@ public class AttendenceCalculation extends AppCompatActivity {
                 mFirebaseDatabase1.child(branch).child(semester)
                         .child(className).child(usn)
                         .child(subject).child("Percentage").setValue(percentageString);
+                mFirebaseDatabase1.child(branch).child(semester)
+                        .child(className).child(usn)
+                        .child(subject).child(date).child(currentDateTimeString).setValue("Present");
             }
         });
         absent.setOnClickListener(new View.OnClickListener() {
