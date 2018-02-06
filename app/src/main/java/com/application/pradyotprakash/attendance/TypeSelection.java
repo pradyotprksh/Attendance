@@ -55,6 +55,7 @@ public class TypeSelection extends AppCompatActivity {
                 }
                 else if (teacher.isChecked()){
                     Intent intent = new Intent(TypeSelection.this,TeacherActivity.class);
+                    intent.putExtra("loginAgain","false");
                     startActivity(intent);
                     finish();
                 }

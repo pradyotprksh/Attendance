@@ -22,6 +22,7 @@ public class TeacherActivity extends AppCompatActivity {
     private EditText teacherEmail, teacherPassword;
     private Button teacherLoginButton, noAccount;
     private DatabaseReference mFirebaseDatabase;
+    private String  loginAgainValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +33,13 @@ public class TeacherActivity extends AppCompatActivity {
         teacherEmail = findViewById(R.id.teacherEmailId);
         teacherPassword = findViewById(R.id.teacherPassword);
         noAccount = findViewById(R.id.noAccount);
-        if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(TeacherActivity.this, TeacherControl.class));
-            finish();
+        Intent intent = getIntent();
+        loginAgainValue = intent.getStringExtra("loginAgain");
+        if (!loginAgainValue.equals("true")){
+            if (mAuth.getCurrentUser() != null) {
+                startActivity(new Intent(TeacherActivity.this, TeacherControl.class));
+                finish();
+            }
         }
         teacherLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override

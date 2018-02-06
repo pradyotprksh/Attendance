@@ -76,6 +76,9 @@
     <string name="change_value3">Change Value</string>
     <string name="send_sms2">Send SMS</string>
     <string name="refresh3">Refresh</string>
+    <string name="upload_files">Upload Files</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="send_notification">Send Notification</string>
     <string-array name="spinner_branches">
         <item>
             Civil Engineering

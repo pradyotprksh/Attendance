@@ -1,10 +1,11 @@
 package com.application.pradyotprakash.attendance;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -15,8 +16,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class AttendenceActivity extends AppCompatActivity {
@@ -26,16 +25,20 @@ public class AttendenceActivity extends AppCompatActivity {
     private List<StudentUsn> mStudentList;
     String branch, semester, className, subject;
     private DatabaseReference mFirebaseDatabase;
+    private Button uploadFiles, sendNotification;
+    int FILE_UPLOAD = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendence);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         branch = intent.getStringExtra("branch");
         semester = intent.getStringExtra("semester");
         className = intent.getStringExtra("className");
         subject = intent.getStringExtra("subject");
+        uploadFiles = findViewById(R.id.uploadFiles);
+        sendNotification = findViewById(R.id.sendNotification);
         studentList = findViewById(R.id.studentList);
         mStudentList = new ArrayList<>();
         mFirebaseDatabase = FirebaseDatabase
@@ -72,6 +75,26 @@ public class AttendenceActivity extends AppCompatActivity {
                 intent.putExtra("usn", usn);
                 intent.putExtra("subject", subject);
                 startActivity(intent);
+            }
+        });
+        uploadFiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(AttendenceActivity.this,UploadingFiles.class);
+                startActivity(intent1);
+                finish();
+            }
+        });
+        sendNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(AttendenceActivity.this,SendingNotification.class);
+                intent1.putExtra("branch", branch);
+                intent1.putExtra("semester", semester);
+                intent1.putExtra("className", className);
+                intent1.putExtra("subject", subject);
+                startActivity(intent1);
+                finish();
             }
         });
     }

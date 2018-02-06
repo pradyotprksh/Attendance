@@ -46,8 +46,16 @@ public class TeacherControl extends AppCompatActivity {
         mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                String tUserName = dataSnapshot.child("Name").getValue().toString();
-                userName.setText(tUserName);
+                try {
+                    String tUserName = dataSnapshot.child("Name").getValue().toString();
+                    userName.setText(tUserName);
+                } catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Log In Again.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(TeacherControl.this, TeacherActivity.class);
+                    intent.putExtra("loginAgain", "true");
+                    startActivity(intent);
+                    finish();
+                }
             }
 
             @Override
@@ -83,7 +91,7 @@ public class TeacherControl extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Unable to fetch the data right now!", Toast.LENGTH_SHORT).show();
+
             }
         });
         classListAdapter = new ClassTeacherListAdapter(getApplicationContext(), mClassList);
@@ -91,8 +99,8 @@ public class TeacherControl extends AppCompatActivity {
         classList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(TeacherControl.this,StudentSMSInformation.class);
-                intent.putExtra("className",className);
+                Intent intent = new Intent(TeacherControl.this, StudentSMSInformation.class);
+                intent.putExtra("className", className);
                 intent.putExtra("branchName", branchName);
                 intent.putExtra("semesterName", semesterName);
                 startActivity(intent);

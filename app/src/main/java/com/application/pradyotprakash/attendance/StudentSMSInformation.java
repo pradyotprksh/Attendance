@@ -25,7 +25,7 @@ import java.util.List;
 public class StudentSMSInformation extends AppCompatActivity {
 
     String branch, semester, className;
-    private DatabaseReference mFirebaseDatabase, mFirebaseDatabase1;
+    private DatabaseReference mFirebaseDatabase, mFirebaseDatabase1, mFirebaseDatabase2;
     private ListView studentList;
     private StudentListAdapter studentListAdapter;
     private List<StudentUsn> mStudentList;
@@ -75,6 +75,22 @@ public class StudentSMSInformation extends AppCompatActivity {
         sendSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                String dateValue = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+//                mFirebaseDatabase2 = FirebaseDatabase
+//                        .getInstance().getReference()
+//                        .child("SMS").child(dateValue);
+//                mFirebaseDatabase2.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//
+//                    }
+//                });
+//                mFirebaseDatabase2.setValue("Sent");
                 mFirebaseDatabase = FirebaseDatabase
                         .getInstance().getReference()
                         .child("Users").child("Student").child(branch).child(semester).child(className);
@@ -82,6 +98,7 @@ public class StudentSMSInformation extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                            finalMessage = "";
                             email = (String) dataSnapshot1.child("Email").getValue();
                             name = (String) dataSnapshot1.child("Name").getValue();
                             parentNumber = (String) dataSnapshot1.child("ParentNumber").getValue();
@@ -111,10 +128,38 @@ public class StudentSMSInformation extends AppCompatActivity {
                                                 value = dataSnapshot4.getValue().toString();
                                             }
                                         }
-                                        appendMessage = appendMessage.concat("\nSubject : " + subject
+                                        finalMessage = finalMessage + "\nSubject : " + subject
                                                 + "\nDate: " + date
                                                 + "\nAbsent/Present: " + value
-                                                + "\n----------------------");
+                                                + "\n----------------------";
+                                    }
+                                    Toast.makeText(getApplicationContext(), finalMessage, Toast.LENGTH_SHORT).show();
+                                    if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.READ_PHONE_STATE)
+                                            != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(StudentSMSInformation.this,
+                                                new String[]{android.Manifest.permission.READ_PHONE_STATE},
+                                                MY_PERMISSIONS_REQUEST_SEND_SMS);
+                                    }
+                                    if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.SEND_SMS)
+                                            != PackageManager.PERMISSION_GRANTED) {
+                                        ActivityCompat.requestPermissions(StudentSMSInformation.this,
+                                                new String[]{android.Manifest.permission.SEND_SMS},
+                                                MY_PERMISSIONS_REQUEST_SEND_SMS);
+                                    } else {
+                                        SmsManager sms = SmsManager.getDefault();
+                                        if (android.os.Build.VERSION.SDK_INT >= 22) {
+                                            Log.e("Alert", "Checking SubscriptionId");
+                                            try {
+                                                Log.e("Alert", "SubscriptionId is " + sms.getSubscriptionId());
+                                            } catch (Exception e) {
+                                                Log.e("Alert", e.getMessage());
+                                                Log.e("Alert", "Fixed SubscriptionId to 1");
+                                                sms = SmsManager.getSmsManagerForSubscriptionId(1);
+                                            }
+                                        }
+                                        sms.sendTextMessage(parentNumber, null, finalMessage, null, null);
+                                        Toast.makeText(getApplicationContext(), appendMessage, Toast.LENGTH_SHORT).show();
+//                                        Toast.makeText(getApplicationContext(), appendMessage, Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -123,38 +168,6 @@ public class StudentSMSInformation extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Unable to fetch the data right now!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.READ_PHONE_STATE)
-                                    != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(StudentSMSInformation.this,
-                                        new String[]{android.Manifest.permission.READ_PHONE_STATE},
-                                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-                            }
-                            if (ContextCompat.checkSelfPermission(StudentSMSInformation.this, android.Manifest.permission.SEND_SMS)
-                                    != PackageManager.PERMISSION_GRANTED) {
-                                ActivityCompat.requestPermissions(StudentSMSInformation.this,
-                                        new String[]{android.Manifest.permission.SEND_SMS},
-                                        MY_PERMISSIONS_REQUEST_SEND_SMS);
-                            } else {
-                                finalMessage = "Hello,\nYour Son/Daughter " + name
-                                        + "\nUSN: " + usn
-                                        + "\nEmail-Id: " + email
-                                        + "\nPhone Number: " + phone
-                                        + "\n========================";
-                                SmsManager sms = SmsManager.getDefault();
-                                if (android.os.Build.VERSION.SDK_INT >= 22) {
-                                    Log.e("Alert", "Checking SubscriptionId");
-                                    try {
-                                        Log.e("Alert", "SubscriptionId is " + sms.getSubscriptionId());
-                                    } catch (Exception e) {
-                                        Log.e("Alert", e.getMessage());
-                                        Log.e("Alert", "Fixed SubscriptionId to 1");
-                                        sms = SmsManager.getSmsManagerForSubscriptionId(1);
-                                    }
-                                }
-                                sms.sendTextMessage(parentNumber, null, finalMessage, null, null);
-                                Toast.makeText(getApplicationContext(), finalMessage, Toast.LENGTH_SHORT).show();
-//                                        Toast.makeText(getApplicationContext(), appendMessage, Toast.LENGTH_SHORT).show();
-                            }
                         }
                     }
 

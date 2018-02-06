@@ -99,7 +99,9 @@ public class ShowChangeStats extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot2 : dataSnapshot1.getChildren()) {
                         String time = dataSnapshot2.getKey();
                         value = dataSnapshot2.getValue().toString();
-                        mAbsentList.add(new AbsentAttendance(String.valueOf(date), String.valueOf(time), String.valueOf(value)));
+                        if (value.equals("Absent")){
+                            mAbsentList.add(new AbsentAttendance(String.valueOf(date), String.valueOf(time), String.valueOf(value)));
+                        }
                     }
                 }
             }

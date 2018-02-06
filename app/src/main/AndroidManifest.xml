@@ -63,9 +63,17 @@
             android:theme="@style/AppTheme.LoginTheme" />
         <activity
             android:name=".ChangeAbsentToPresent"
+            android:parentActivityName=".ShowChangeStats"
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".StudentSMSInformation"
+            android:theme="@style/AppTheme.LoginTheme" />
+        <activity
+            android:name=".UploadingFiles"
+            android:theme="@style/AppTheme.LoginTheme" />
+        <activity
+            android:name=".SendingNotification"
+            android:parentActivityName=".AttendenceActivity"
             android:theme="@style/AppTheme.LoginTheme" />
     </application>
 
